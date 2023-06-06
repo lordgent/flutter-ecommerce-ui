@@ -13,7 +13,7 @@ class _SearchInputState extends State<SearchInput> {
     return Container(
       padding: const EdgeInsets.all(12),
       child: Container(
-        width: 360,
+        width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.only(left: 12),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13),
@@ -26,7 +26,8 @@ class _SearchInputState extends State<SearchInput> {
               width: 200,
               child: TextField(
                 decoration: InputDecoration(
-                    border: InputBorder.none, hintText: "Search"),
+                    border: InputBorder.none,
+                    hintText: "Chair, desk, lamp, etc"),
               ),
             ),
             IconButton(

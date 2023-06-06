@@ -1,5 +1,7 @@
 import 'package:ecommerce_ui/screens/home/components/categories.dart';
 import 'package:ecommerce_ui/screens/home/components/product.dart';
+import 'package:ecommerce_ui/screens/home/components/rooms.dart';
+import 'package:ecommerce_ui/widgets/bottom-tab/bottom_tab.dart';
 import 'package:ecommerce_ui/widgets/search/search_input.dart';
 import 'package:flutter/material.dart';
 
@@ -11,45 +13,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_rounded),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Like',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_rounded),
-            label: 'Account',
-          )
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: const Color.fromARGB(255, 210, 210, 210),
-        selectedItemColor: const Color.fromARGB(255, 239, 181, 6),
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: const BottomTab(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -84,14 +51,36 @@ class _HomeState extends State<Home> {
             const Categories(),
             Container(
               width: 400,
-              height: 122,
+              height: 160,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 252, 252, 252),
+                borderRadius: BorderRadius.circular(12),
+              ),
               margin: const EdgeInsets.only(top: 14, left: 12, right: 12),
               child: const Image(
-                image: AssetImage("assets/images/banner2.png"),
+                image: AssetImage("assets/images/banner.png"),
                 fit: BoxFit.cover,
               ),
             ),
-            const Products()
+            const Products(),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 252, 252, 252),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              padding: const EdgeInsets.all(12),
+              child: const SizedBox(
+                width: 400,
+                height: 131,
+                child: Image(
+                  image: AssetImage("assets/images/banner2.png"),
+                  fit: BoxFit.cover,
+                  width: 127,
+                  height: 195,
+                ),
+              ),
+            ),
+            const RoomCategories()
           ],
         ),
       ),

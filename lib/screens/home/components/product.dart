@@ -1,3 +1,4 @@
+import 'package:ecommerce_ui/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class Products extends StatefulWidget {
@@ -14,8 +15,9 @@ class _ProductsState extends State<Products> {
         4,
         (index) => {
               "id": index,
-              "name": "Product ${index + 1}",
-              "image": "assets/images/image${index + 1}.png"
+              "name": "Norrviken Chair and Table lorem",
+              "image": "assets/images/image${index + 1}.png",
+              "price": "Rp${index + 1}00.000"
             }).toList();
 
     return Column(
@@ -45,47 +47,67 @@ class _ProductsState extends State<Products> {
         ),
         Container(
           padding: const EdgeInsets.only(left: 12, right: 12),
-          height: MediaQuery.of(context).size.height / 1.6,
+          height: MediaQuery.of(context).size.height / 1.5,
           child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 4 / 5,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, childAspectRatio: (3 / 4.3)),
               itemCount: myProducts.length,
-              itemBuilder: (BuildContext ctx, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 252, 252, 252),
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 233, 233, 233),
-                          width: 1.0,
-                          style: BorderStyle.solid),
-                      boxShadow: const [
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed(detail),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      boxShadow: [
                         BoxShadow(
-                          color: Color.fromARGB(255, 222, 222, 222),
-                          blurRadius: 0.2,
-                          spreadRadius: 0.4,
-                        ), //BoxShadow
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 141,
-                        height: 151,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 252, 252, 252),
-                          borderRadius: BorderRadius.circular(8),
+                          color: const Color.fromARGB(255, 227, 227, 227)
+                              .withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         ),
-                        padding: const EdgeInsets.only(top: 12),
-                        child: Image(
-                          image: AssetImage(myProducts[index]["image"]),
-                          fit: BoxFit.cover,
+                      ],
+                    ),
+                    margin: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 149,
+                          width: 141,
+                          child: Image(
+                            image: AssetImage(myProducts[index]['image']),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          padding: const EdgeInsets.all(3),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                myProducts[index]['name'],
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Color.fromARGB(255, 165, 165, 165),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                myProducts[index]['price'],
+                                style: const TextStyle(
+                                    fontSize: 17,
+                                    color: Color.fromARGB(255, 73, 73, 73),
+                                    fontWeight: FontWeight.w500),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               }),
