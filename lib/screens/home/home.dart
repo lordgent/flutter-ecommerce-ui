@@ -17,14 +17,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const BottomTab(),
-      body: SingleChildScrollView(
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               padding: const EdgeInsets.all(12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: 300,
@@ -50,13 +52,15 @@ class _HomeState extends State<Home> {
             const SearchInput(),
             const Categories(),
             Container(
+
               width: 400,
               height: 160,
+            
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 252, 252, 252),
                 borderRadius: BorderRadius.circular(12),
               ),
-              margin: const EdgeInsets.only(top: 14, left: 12, right: 12),
+              margin: const EdgeInsets.only(top: 14, left: 12, right: 12,bottom: 12),
               child: const Image(
                 image: AssetImage("assets/images/banner.png"),
                 fit: BoxFit.cover,
@@ -83,6 +87,7 @@ class _HomeState extends State<Home> {
             const RoomCategories()
           ],
         ),
+      ),
       ),
     );
   }

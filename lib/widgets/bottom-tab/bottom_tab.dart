@@ -43,7 +43,7 @@ class _BottomTabState extends State<BottomTab> {
       ],
       currentIndex: _selectedIndex,
       unselectedItemColor: const Color.fromARGB(255, 210, 210, 210),
-      selectedItemColor: const Color.fromARGB(255, 239, 181, 6),
+      selectedItemColor:  const Color.fromARGB(255, 233, 169, 126),
       onTap: _onItemTapped,
     );
   }

@@ -17,13 +17,20 @@ class _ProductsState extends State<Products> {
               "id": index,
               "name": "Norrviken Chair and Table lorem",
               "image": "assets/images/image${index + 1}.png",
-              "price": "Rp${index + 1}00.000"
+              "price": "Rp ${index + 1}.000.000"
             }).toList();
 
     return Column(
       children: [
+        
         Container(
-          padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+          color: const Color.fromARGB(255, 255, 255, 255),
+          padding: const EdgeInsets.only(left: 12, right: 12),
+          child: SingleChildScrollView(
+  child: Column(
+    children: [
+      Container(
+          padding: const EdgeInsets.only(left: 12, right: 12),
           child: const Column(
             children: [
               Row(
@@ -38,79 +45,97 @@ class _ProductsState extends State<Products> {
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w300,
-                        color: Color.fromARGB(255, 232, 176, 8)),
+                        color: Color.fromARGB(255, 226, 172, 8)),
                   ),
                 ],
               ),
             ],
           ),
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 12, right: 12),
-          height: MediaQuery.of(context).size.height / 1.5,
-          child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: (3 / 4.3)),
-              itemCount: myProducts.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed(detail),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(6)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color.fromARGB(255, 227, 227, 227)
-                              .withOpacity(0.2),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
+        )
+      ,
+      GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        childAspectRatio: 3 / 4.6,
+        children: List.generate(4, (index) {
+          return GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed(detail,arguments: myProducts[index]),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color.fromARGB(255, 227, 227, 227).withOpacity(0.2),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                  ),
+                ],
+              ),
+              margin: const EdgeInsets.all(6),
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Positioned(child: SizedBox(
+                    height: 149,
+                    width: 141,
+                    child: Image(
+                      image: AssetImage(myProducts[index]['image']),
+                      fit: BoxFit.cover,
                     ),
-                    margin: const EdgeInsets.all(6),
+                  )),
+                  Positioned(
+                    right:1,
+                    child: Container(
+                    decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:  BorderRadius.all(Radius.circular(40)),
+              ),
+                    height: 30,
+                    width: 30,
+                    child:  IconButton(onPressed: (){}, icon: 
+                    const Icon(Icons.favorite_outline,color: Color.fromARGB(255, 95, 95, 95),size: 15,)),
+                  ))
+                    ],
+                  ),
+                  Container(
                     padding: const EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          height: 149,
-                          width: 141,
-                          child: Image(
-                            image: AssetImage(myProducts[index]['image']),
-                            fit: BoxFit.cover,
+                        Text(
+                          myProducts[index]['name'],
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Color.fromARGB(255, 165, 165, 165),
+                            fontWeight: FontWeight.w300,
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(3),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                myProducts[index]['name'],
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromARGB(255, 165, 165, 165),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                myProducts[index]['price'],
-                                style: const TextStyle(
-                                    fontSize: 17,
-                                    color: Color.fromARGB(255, 73, 73, 73),
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
+                        Text(
+                          myProducts[index]['price'],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 233, 169, 126),
+                            fontWeight: FontWeight.bold,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
-                );
-              }),
+                ],
+              ),
+            ),
+          );
+        }),
+      ),
+    ],
+  ),
+)
+,
         )
       ],
     );

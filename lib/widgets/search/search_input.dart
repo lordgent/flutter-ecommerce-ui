@@ -22,9 +22,9 @@ class _SearchInputState extends State<SearchInput> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              width: 200,
-              child: TextField(
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: const TextField(
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Chair, desk, lamp, etc"),

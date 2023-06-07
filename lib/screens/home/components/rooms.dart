@@ -76,6 +76,5 @@ class _RoomCategoriesState extends State<RoomCategories> {
         )
       ],
     );
-    ;
   }
 }
