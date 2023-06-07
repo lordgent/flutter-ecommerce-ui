@@ -1,5 +1,5 @@
 import 'package:ecommerce_ui/screens/detail-product/components/button_add_cart.dart';
-import 'package:ecommerce_ui/screens/detail-product/components/content_product.dart';
+import 'package:ecommerce_ui/screens/detail-product/components/content/content_product.dart';
 import 'package:ecommerce_ui/screens/detail-product/components/photo_product.dart';
 import 'package:flutter/material.dart';
 
