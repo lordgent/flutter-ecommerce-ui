@@ -15,7 +15,7 @@ class _ProductsState extends State<Products> {
         4,
         (index) => {
               "id": index,
-              "name": "Norrviken Chair and Table lorem",
+              "name": "Informa Aryana Sofa Fabric",
               "image": "assets/images/image${index + 1}.png",
               "price": "Rp ${index + 1}.000.000"
             }).toList();
