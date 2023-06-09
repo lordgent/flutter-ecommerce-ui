@@ -1,3 +1,4 @@
+import 'package:ecommerce_ui/models/Product.dart';
 import 'package:ecommerce_ui/screens/detail-product/components/button_add_cart.dart';
 import 'package:ecommerce_ui/screens/detail-product/components/content/content_product.dart';
 import 'package:ecommerce_ui/screens/detail-product/components/photo_product.dart';
@@ -29,12 +30,29 @@ class _DetailProductState extends State<DetailProduct> {
     });
   }
 
+  void addCart() {
+    setState(() {
+      if (counter != 1) {
+        counter--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> product = widget.product;
     final String? imageUrl = product['image'];
     final String? name = product['name'];
     final String? price = product['price'];
+    final String? desc = product['description'];
+
+    Product productAdd = Product(
+        id: product['id'].toString(),
+        name: product['name'],
+        price: product['price'],
+        image: product['image'],
+        description: product['description'],
+        qty: counter);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -50,12 +68,15 @@ class _DetailProductState extends State<DetailProduct> {
                   PhotoProduct(imageUrl: imageUrl ?? ''),
                   ContentProduct(
                     name: name ?? '',
-                    price: price ?? '',
+                    description: desc ?? '',
+                    price: price.toString(),
                     decrement: () => _decrementCounter(),
                     increment: () => _incrementCounter(),
                     total: counter,
                   ),
-                  const ButtonAddCart()
+                  ButtonAddCart(
+                    product: productAdd,
+                  )
                 ],
               ),
             ],

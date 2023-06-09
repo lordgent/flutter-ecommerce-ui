@@ -1,10 +1,16 @@
+import 'package:ecommerce_ui/models/Product.dart';
+import 'package:ecommerce_ui/store/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ButtonAddCart extends StatelessWidget {
-  const ButtonAddCart({super.key});
+  final Product product;
+  const ButtonAddCart({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
     return Positioned(
         right: 0,
         left: 0,
@@ -50,7 +56,9 @@ class ButtonAddCart extends StatelessWidget {
                   ),
                   width: MediaQuery.of(context).size.width / 1.3,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        cartProvider.addToCart(product);
+                      },
                       child: const Text(
                         "Add to bag",
                         style: TextStyle(

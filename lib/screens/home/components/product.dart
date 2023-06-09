@@ -2,7 +2,8 @@ import 'package:ecommerce_ui/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class Products extends StatefulWidget {
-  const Products({super.key});
+  final String title;
+  const Products({super.key, required this.title});
 
   @override
   State<Products> createState() => _ProductsState();
@@ -15,9 +16,11 @@ class _ProductsState extends State<Products> {
         4,
         (index) => {
               "id": index,
-              "name": "Informa Aryana Sofa Fabric",
+              "name": "Norrviken chair and table Lorem ipsum",
               "image": "assets/images/image${index + 1}.png",
-              "price": "Rp ${index + 1}.000.000"
+              "description":
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+              "price": "${index + 1}000000"
             }).toList();
 
     return Column(
@@ -30,17 +33,17 @@ class _ProductsState extends State<Products> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 12, right: 12),
-                  child: const Column(
+                  child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Popular",
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.w600),
+                            widget.title,
+                            style: const TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w600),
                           ),
-                          Text(
+                          const Text(
                             "see all",
                             style: TextStyle(
                                 fontSize: 18,
@@ -56,7 +59,7 @@ class _ProductsState extends State<Products> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
-                  childAspectRatio: 3 / 4.5,
+                  childAspectRatio: 3 / 4.7,
                   children: List.generate(4, (index) {
                     return GestureDetector(
                       onTap: () => Navigator.of(context)
@@ -117,7 +120,7 @@ class _ProductsState extends State<Products> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
                                     myProducts[index]['name'],
@@ -127,9 +130,9 @@ class _ProductsState extends State<Products> {
                                       fontWeight: FontWeight.w300,
                                     ),
                                   ),
-                                  Text(
-                                    myProducts[index]['price'],
-                                    style: const TextStyle(
+                                  const Text(
+                                    "Rp myProducts[index]['price']",
+                                    style: TextStyle(
                                       fontSize: 16,
                                       color: Color.fromARGB(255, 233, 169, 126),
                                       fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:ecommerce_ui/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class BottomTab extends StatefulWidget {
@@ -11,9 +12,23 @@ class _BottomTabState extends State<BottomTab> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (_selectedIndex == 0) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      Navigator.of(context).pushNamed(home);
+    } else if (_selectedIndex == 1) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      Navigator.of(context).pushNamed(home);
+    }
+    if (_selectedIndex == 2) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      Navigator.of(context).pushNamed(cart);
+    }
   }
 
   @override
@@ -43,7 +58,7 @@ class _BottomTabState extends State<BottomTab> {
       ],
       currentIndex: _selectedIndex,
       unselectedItemColor: const Color.fromARGB(255, 210, 210, 210),
-      selectedItemColor:  const Color.fromARGB(255, 233, 169, 126),
+      selectedItemColor: const Color.fromARGB(255, 233, 169, 126),
       onTap: _onItemTapped,
     );
   }

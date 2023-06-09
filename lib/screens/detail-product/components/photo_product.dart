@@ -1,3 +1,4 @@
+import 'package:ecommerce_ui/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class PhotoProduct extends StatelessWidget {
@@ -38,7 +39,7 @@ class PhotoProduct extends StatelessWidget {
               ],
             ),
             child: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => Navigator.of(context).pushNamed(home),
                 icon: const Icon(
                   Icons.arrow_back,
                   color: Color.fromARGB(255, 75, 75, 75),

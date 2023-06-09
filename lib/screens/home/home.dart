@@ -65,7 +65,9 @@ class _HomeState extends State<Home> {
                   fit: BoxFit.cover,
                 ),
               ),
-              const Products(),
+              const Products(
+                title: "Popular",
+              ),
               Container(
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 252, 252, 252),
